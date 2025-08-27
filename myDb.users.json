@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "68ae95dacee440f2c70af1fc"
+  },
+  "name": "Anupam",
+  "email": "anupamss@gmail.com"
+},
+{
+  "_id": {
+    "$oid": "68ae96c3cee440f2c70af1fd"
+  },
+  "name": "Manish",
+  "email": "manish@gmail.com"
+},
+{
+  "_id": {
+    "$oid": "68ae96d9cee440f2c70af1fe"
+  },
+  "name": "Deepak",
+  "email": "deepak@gmail.com"
+},
+{
+  "_id": {
+    "$oid": "68ae971ccee440f2c70af1ff"
+  },
+  "name": "Hemanta",
+  "email": "hemanta@gamil.com"
+},
+{
+  "_id": {
+    "$oid": "68ae9741cee440f2c70af200"
+  },
+  "name": "Kartik Kumar",
+  "email": "kartik@gmail.com"
+}]
