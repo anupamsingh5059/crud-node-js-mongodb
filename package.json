@@ -1,0 +1,19 @@
+{
+  "name": "crud-opreation",
+  "version": "1.0.0",
+  "description": "Node.js + MongoDB CRUD without Express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "crud"
+  ],
+  "author": "Anupam",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.19.0"
+  }
+}

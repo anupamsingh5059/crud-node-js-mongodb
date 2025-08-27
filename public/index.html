@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node + Mongo CRUD (No Express)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CRUD with Node.js + MongoDB (No Express)</h1>
+
+    <form id="userForm">
+      <input type="hidden" id="userId">
+      <input type="text" id="name" placeholder="Enter Name" required>
+      <input type="email" id="email" placeholder="Enter Email" required>
+      <button type="submit">Save</button>
+    </form>
+
+    <h2>User List</h2>
+    <table id="userTable"></table>
+  </div>
+
+<script>
+async function loadUsers() {
+  const res = await fetch("/users");
+  const data = await res.json();
+  const table = document.getElementById("userTable");
+  table.innerHTML = "<tr><th>Name</th><th>Email</th><th>Actions</th></tr>";
+  data.forEach(u => {
+    table.innerHTML += `
+      <tr>
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+        <td>
+          <button onclick="editUser('${u._id}','${u.name}','${u.email}')">Edit</button>
+          <button onclick="deleteUser('${u._id}')">Delete</button>
+        </td>
+      </tr>`;
+  });
+}
+
+document.getElementById("userForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const id = document.getElementById("userId").value;
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const url = id ? "/update" : "/add";
+  await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, name, email })
+  });
+  document.getElementById("userForm").reset();
+  loadUsers();
+});
+
+async function deleteUser(id) {
+  await fetch("/delete", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id })
+  });
+  loadUsers();
+}
+
+function editUser(id, name, email) {
+  document.getElementById("userId").value = id;
+  document.getElementById("name").value = name;
+  document.getElementById("email").value = email;
+}
+
+loadUsers();
+</script>
+</body>
+</html>
